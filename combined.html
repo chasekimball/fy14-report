@@ -38,6 +38,7 @@
 
 
 
+
 	function initialize() {
 		var mapOptions = {
 			zoom: 3,
@@ -51,38 +52,35 @@
 		
 		var flightPaths = [];
 		
-		var fPath1 = [[new google.maps.LatLng(38.920406, -77.038645), new google.maps.LatLng(35.048665, -106.616704)], "DC > ABQ<br>Wedding in Albuquerque!"],
-			fPath2 = [[new google.maps.LatLng(38.920406, -77.038645), new google.maps.LatLng(40.785596, -111.980673)], "DC > SLC<br>Holidays and reception in Utah"],
-			fPath3 = [[new google.maps.LatLng(38.920406, -77.038645), new google.maps.LatLng(41.974163, -87.90732)], "DC > ORD<br>Shower and reception in Evanston"],
-			fPath4 = [[new google.maps.LatLng(38.920406, -77.038645), new google.maps.LatLng(18.436459, -66.005055)], "DC > SJU<br>30 hour vacation in Puerto Rico"],
-			fPath5 = [[new google.maps.LatLng(38.920406, -77.038645), new google.maps.LatLng(25.796549, -80.275614)], "DC > MIA<br>Peace Corps business trips and Campbell sibling Bonding in Miami"],
-			fPath6 = [[new google.maps.LatLng(38.920406, -77.038645), new google.maps.LatLng(42.365613, -71.00956)], "DC > BOS<br>Beautiful nieces in Boston"],
-			fPath7 = [[new google.maps.LatLng(38.920406, -77.038645), new google.maps.LatLng(39.856149, -104.673726)], "DC > DEN<br>Friends' wedding in Denver"],
-			fPath8 = [[new google.maps.LatLng(42.365613, -71.00956), new google.maps.LatLng(63.996136, -22.623408)], "BOS > KEF<br>Family vacation to Iceland"],
-			fPath9 = [[new google.maps.LatLng(64.130933, -21.93287), new google.maps.LatLng(65.658611, -18.072222)], "RKV > AEY<br>Visit to Akureyri"],
-			fPath10 = [[new google.maps.LatLng(38.920406, -77.038645), new google.maps.LatLng(44.881234, -93.203111)], "DC > MSP<br>Reunion planning at Carleton"],
-			fPath11 = [[new google.maps.LatLng(38.920406, -77.038645), new google.maps.LatLng(47.44443, -122.300497)], "DC > SEA<br>Friends' wedding in Seattle"];
+		pathData = [
+				[[38.920406], [-77.038645], [35.048665], [-106.616704], ["DC > ABQ<br>Wedding in Albuquerque!"]],
+				[[38.920406], [-77.038645], [40.785596], [-111.980673], ["DC > SLC<br>Holidays and reception in Utah"]],
+				[[38.920406], [-77.038645], [41.974163], [-87.90732], ["DC > ORD<br>Shower and reception in Evanston"]],
+				[[38.920406], [-77.038645], [18.436459], [-66.005055], ["DC > SJU<br>30 hour vacation in Puerto Rico"]],
+				[[38.920406], [-77.038645], [25.796549], [-80.275614], ["DC > MIA<br>Peace Corps business trips and Campbell sibling Bonding in Miami"]],
+				[[38.920406], [-77.038645], [42.365613], [-71.00956], ["DC > BOS<br>Beautiful nieces in Boston"]],
+				[[38.920406], [-77.038645], [39.856149], [-104.673726], ["DC > DEN<br>Friends' wedding in Denver"]],
+				[[42.365613], [-71.00956], [63.996136], [-22.623408], ["BOS > KEF<br>Family vacation to Iceland"]],
+				[[64.130933], [-21.93287], [65.658611], [-18.072222], ["RKV > AEY<br>Visit to Akureyri"]],
+				[[38.920406], [-77.038645], [44.881234], [-93.203111], ["DC > MSP<br>Reunion planning at Carleton"]],
+				[[38.920406], [-77.038645], [47.44443], [-122.300497], ["DC > SEA<br>Friends' wedding in Seattle"]]
+			]
 
 
-		flightPaths.push(fPath1);
-		flightPaths.push(fPath2);
-		flightPaths.push(fPath3);
-		flightPaths.push(fPath4);
-		flightPaths.push(fPath5);
-		flightPaths.push(fPath6);
-		flightPaths.push(fPath7);
-		flightPaths.push(fPath8);
-		flightPaths.push(fPath9);
-		flightPaths.push(fPath10);
-		flightPaths.push(fPath11);
-
-		for (var i = 0; i < flightPaths.length; i++) {
-			plotLine(flightPaths[i]);
+		for (var i = 0; i < pathData.length; i++) {
+			flightPath = createPath(pathData[i][0],pathData[i][1],pathData[i][2],pathData[i][3],pathData[i][4]);
+			plotLine(flightPath);
 		}
+
+
 		
 	}
 
 
+	  function createPath(startLat, startLng, endLat, endLng, title) {
+	  	path = [[new google.maps.LatLng(startLat, startLng), new google.maps.LatLng(endLat, endLng)], title];
+	  	return path
+	  }
 
 	function plotLine(flightPaths) {
 		var polyline;
