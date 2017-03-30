@@ -2,15 +2,25 @@
   <head>
 
 
-	<style>
+<!-- 	<style>
 	  html, body, #map-canvas {
 		height: 200px;
 		margin: 0px;
 		padding: 0px
 	  }
+	</style> -->
+
+	<style type="text/css">
+		body {
+		    padding-top: 50px;
+		    padding-right: 80px;
+		    padding-bottom: 50px;
+		    padding-left: 80px;
+		}
+		.chart {
+			margin: auto;
+		}
 	</style>
-
-
 
 	<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAR0WG6ZXeEhGQ9CIMc3VLikCp1sXN0EGk'></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -2119,32 +2129,34 @@
 		var mapOptions = {
 			zoom: 3,
 			center: new google.maps.LatLng(38.920406, -77.038645),
-			mapTypeId: google.maps.MapTypeId.TERRAIN
+			mapTypeId: google.maps.MapTypeId.TERRAIN,
+			mapTypeControl: false,
+			streetViewControl: false,
+			scrollwheel: false
 		};
 
 		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		//Why does it break things if I define this with the word var?
 
-		var infowindow = new google.maps.InfoWindow();
+		var infowindow = new google.maps.InfoWindow(); //Defining outside of plotLine() function so only one info window exists at a time
 		
-		//var flightPaths = [];
-		
-		pathData = [
-				[[38.920406], [-77.038645], [35.048665], [-106.616704], ["DC > ABQ<br>Wedding in Albuquerque!"]],
-				[[38.920406], [-77.038645], [40.785596], [-111.980673], ["DC > SLC<br>Holidays and reception in Utah"]],
-				[[38.920406], [-77.038645], [41.974163], [-87.90732], ["DC > ORD<br>Shower and reception in Evanston"]],
-				[[38.920406], [-77.038645], [18.436459], [-66.005055], ["DC > SJU<br>30 hour vacation in Puerto Rico"]],
-				[[38.920406], [-77.038645], [25.796549], [-80.275614], ["DC > MIA<br>Peace Corps business trips and Campbell sibling Bonding in Miami"]],
-				[[38.920406], [-77.038645], [42.365613], [-71.00956], ["DC > BOS<br>Beautiful nieces in Boston"]],
-				[[38.920406], [-77.038645], [39.856149], [-104.673726], ["DC > DEN<br>Friends' wedding in Denver"]],
-				[[42.365613], [-71.00956], [63.996136], [-22.623408], ["BOS > KEF<br>Family vacation to Iceland"]],
-				[[64.130933], [-21.93287], [65.658611], [-18.072222], ["RKV > AEY<br>Visit to Akureyri"]],
-				[[38.920406], [-77.038645], [44.881234], [-93.203111], ["DC > MSP<br>Reunion planning at Carleton"]],
-				[[38.920406], [-77.038645], [47.44443], [-122.300497], ["DC > SEA<br>Friends' wedding in Seattle"]]
+		var pathData = [
+				[38.920406, -77.038645, 35.048665, -106.616704, "DC > ABQ<br>Wedding in Albuquerque!"],
+				[38.920406, -77.038645, 40.785596, -111.980673, "DC > SLC<br>Holidays and reception in Utah"],
+				[38.920406, -77.038645, 41.974163, -87.9073200, "DC > ORD<br>Shower and reception in Evanston"],
+				[38.920406, -77.038645, 18.436459, -66.0050550, "DC > SJU<br>30 hour vacation in Puerto Rico"],
+				[38.920406, -77.038645, 25.796549, -80.2756140, "DC > MIA<br>Peace Corps business trips and Campbell sibling Bonding in Miami"],
+				[38.920406, -77.038645, 42.365613, -71.0095600, "DC > BOS<br>Beautiful nieces in Boston"],
+				[38.920406, -77.038645, 39.856149, -104.673726, "DC > DEN<br>Friends' wedding in Denver"],
+				[42.365613, -71.009560, 63.996136, -22.6234080, "BOS > KEF<br>Family vacation to Iceland"],
+				[64.130933, -21.932870, 65.658611, -18.0722220, "RKV > AEY<br>Visit to Akureyri"],
+				[38.920406, -77.038645, 44.881234, -93.2031110, "DC > MSP<br>Reunion planning at Carleton"],
+				[38.920406, -77.038645, 47.444430, -122.300497, "DC > SEA<br>Friends' wedding in Seattle"]
 			]
 
 
 		for (var i = 0; i < pathData.length; i++) {
-			plotLine(pathData[i][0],pathData[i][1],pathData[i][2],pathData[i][3],pathData[i][4]);
+			plotLine(pathData[i][0],pathData[i][1],pathData[i][2],pathData[i][3],pathData[i][4],infowindow);
 		}
 
 		
@@ -2152,7 +2164,7 @@
 
 
 
-	function plotLine(startLat, startLng, endLat, endLng, title) {
+	function plotLine(startLat, startLng, endLat, endLng, title, infowindow) {
 		var path = [new google.maps.LatLng(startLat, startLng), new google.maps.LatLng(endLat, endLng)]
 		var polyline;
 
@@ -2194,11 +2206,21 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </head>
 
   <body>
-	<div id="donutchart" style="width: 900px; height: 500px;"></div>
-	<div id='map-canvas'></div>
-	<div id="phone_chart_div" style="width: 1200px; height: 500px;"></div>
-	<div id="email_chart_div" style="width: 1200px; height: 500px;"></div>
-	<div id="text_chart_div" style="width: 1200px; height: 500px;"></div>
+  	<h1>Kimball Campbell Report</h1>
+  	<h2>Fiscal Year 2014</h2>
+  	<p>The federal fiscal year began with a shutdown. For the Nation, it was an embarrassment and a hazard to our stability. But for Heather and Chase--two federal employees who had been very busy and eager for some quiet time together--the forced furlough came as a welcome reprieve. On October 1, the first day of the Shutdown, we escaped the city for the hills of West Virginia and a discussion about life, love, and our future. Two days later, after a very long walk, Heather and Chase proposed to each other on the banks of the Potomac River. They were married in Albuquerque, New Mexico on March 15, 2014.</p>
+  	<p>The alignment of the new fiscal year with the beginning of Heather and Chase's new betrothed relationship inspired this Report. The Kimball Campbell FY 2014 Report documents their relationship and their activity in general, based on a variety of datasets. They travel extensively, enjoy dinner with friends, and communicate often.</p>
 
+	<div id="donutchart" class="chart" style="width: 500px; height: 500px;"></div>
+	<center>
+	<p style="font-family:arial; font-size:13"><b>Air Travel During FY 2014</b>
+	<br>
+	<i>(click a flight path to learn more)</i>
+	</p>
+	</center>
+	<div id="map-canvas" class="chart" style="width: 600px; height: 300px;""></div>
+	<div id="phone_chart_div" class="chart" style="width: 900px; height: 500px;"></div>
+	<div id="email_chart_div" class="chart" style="width: 900px; height: 500px;"></div>
+	<div id="text_chart_div" class="chart" style="width: 900px; height: 500px;"></div>
   </body>
 </html>
