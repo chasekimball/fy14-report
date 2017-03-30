@@ -28,7 +28,7 @@
 	<script src="fy14-report/scripts/papaparse.min.js"></script>
 	<script type="text/javascript">
 
-	myData = Papa.parse("fy14-report/data/email.csv")
+	myData = Papa.parse("fy14-report/data/email.csv", {skipEmptyLines: true})
 
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawCharts);
