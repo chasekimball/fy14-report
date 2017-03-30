@@ -25,10 +25,10 @@
 	<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAR0WG6ZXeEhGQ9CIMc3VLikCp1sXN0EGk'></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-	<script src="fy14-report/scripts/papaparse.min.js"></script>
+	<script src="scripts/papaparse.min.js"></script>
 	<script type="text/javascript">
 
-	myData = Papa.parse("fy14-report/data/email.csv", {skipEmptyLines: true})
+	myData = Papa.parse("data/email.csv", {skipEmptyLines: true})
 
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawCharts);
