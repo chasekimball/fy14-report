@@ -3,8 +3,10 @@
   <script src="scripts/papaparse.min.js"></script>
   <script src="scripts/d3.v4.min.js"></script>
   <script type="text/javascript">
-    papaData = Papa.parse("data/email.csv")
-    d3Data = d3.csvParse("data/email.csv")
+    //papaData = Papa.parse("data/email.csv");
+    var data = d3.csvParse("data/email.csv", function(d){
+    	console.log(data[0]);
+    });
   </script>
 </head>
 <body>
