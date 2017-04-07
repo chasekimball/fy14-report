@@ -2,6 +2,63 @@
   <head>
 
 
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Kimball Campbell FY 2014 Report</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+
+	<style>
+	.title {
+	  padding: 6rem 0 2rem;
+	  text-align: center;
+	}
+	.section {
+	  padding: 3rem 0 2rem;
+	}
+	.caption {
+	  /*float: auto;*/
+	  width: 60%;
+	  text-align: left;
+	  font-style: italic;
+	  font-size: smaller;
+	  text-indent: 0;
+	  /*border: thin silver solid;*/
+	  margin: 0.5em;
+	  margin-left: 4em;
+	  margin-right: 4em;
+	  padding: 0.5em;
+	}
+	.colophon {
+	    align-items: bottom;
+	    vertical-align: bottom;		
+	}
+	.notes {
+/*		display: flex;
+	    align-items: center;*/
+	}
+	</style>
+
+
 <!-- 	<style>
 	  html, body, #map-canvas {
 		height: 200px;
@@ -10,7 +67,7 @@
 	  }
 	</style> -->
 
-	<style type="text/css">
+<!-- 	<style type="text/css">
 		body {
 		    padding-top: 50px;
 		    padding-right: 80px;
@@ -20,7 +77,7 @@
 		.chart {
 			margin: auto;
 		}
-	</style>
+	</style> -->
 
 	<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAR0WG6ZXeEhGQ9CIMc3VLikCp1sXN0EGk'></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -28,7 +85,7 @@
 	<script src="scripts/papaparse.min.js"></script>
 	<script type="text/javascript">
 
-	myData = Papa.parse("data/email.csv", {skipEmptyLines: true})
+	//myData = Papa.parse("data/email.csv", {skipEmptyLines: true})
 
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawCharts);
@@ -800,8 +857,8 @@
 		]);
 		var dataText = google.visualization.arrayToDataTable([
 			['ID', 'Date', 'Time', 'Sender', 'Count'],
-			['', new Date(2013, 9, 1), [8,0,0], 'from Chase to Heather', 2],
 			['', new Date(2013, 9, 1), [8,0,0], 'from Heather to Chase', 2],
+			['', new Date(2013, 9, 1), [8,0,0], 'from Chase to Heather', 2],
 			['', new Date(2013, 9, 1), [11,0,0], 'from Chase to Heather', 1],
 			['', new Date(2013, 9, 1), [11,0,0], 'from Heather to Chase', 1],
 			['', new Date(2013, 9, 1), [12,0,0], 'from Heather to Chase', 1],
@@ -2070,13 +2127,14 @@
 		]);
 		
 		var options = {
-			title: '[Communication Type] Between Heather and Chase',
+			//title: '[Communication Type] Between Heather and Chase',
+			legend: {position: 'top'},
 			hAxis: { 
-				title: 'Date',
+				//title: 'Date',
 				format: 'MMM yy'
 				},
 			vAxis: {
-				title: 'Time',
+				title: 'morning --> night',
 				format: 'h a',
 				viewWindow: {
 					min: [3,0,0],
@@ -2085,21 +2143,21 @@
 				ticks: [[6,0,0],[12,0,0],[18,0,0],[24,0,0],[30,0,0]]
 				},
 			bubble: {textStyle: {fontSize: 11}},
-			series: {'from Heather to Chase': {color: 'blue'}, 'from Chase to Heather': {color: 'green'}}
+			//series: {'from Heather to Chase': {color: 'blue'}, 'from Chase to Heather': {color: 'green'}}
 		};
 		
 		
 		
 		var chartPhone = new google.visualization.BubbleChart(document.getElementById('phone_chart_div'));
-		options.title = 'Phone Calls Between Heather and Chase';
+		//options.title = 'Phone Calls';
 		chartPhone.draw(dataPhone, options);
 		
 		var chartEmail = new google.visualization.BubbleChart(document.getElementById('email_chart_div'));
-		options.title = 'Emails Between Heather and Chase';
+		//options.title = 'Emails';
 		chartEmail.draw(dataEmail, options);
 		
 		var chartText = new google.visualization.BubbleChart(document.getElementById('text_chart_div'));
-		options.title = 'Texts Between Heather and Chase';
+		//options.title = 'Texts';
 		chartText.draw(dataText, options);		
 		
 	}
@@ -2117,7 +2175,7 @@
         ]);
 
         var options = {
-          title: 'Our Relationship Status During FY 2014',
+          title: 'Relationship status during FY 2014',
           pieHole: 0.4
         };
 
@@ -2209,26 +2267,104 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </head>
 
   <body>
-  	<h1>Kimball Campbell Report</h1>
-  	<h2>Fiscal Year 2014</h2>
-  	<p>On October 1, 2013, the U.S. Government shut down. Congress's failure to pass a spending bill before the start of the new fiscal year triggered the suspension of services and the furlough of federal workers, causing turbulance in the markets and international embarassment. However, for the two of us -- a pair of young government workers named Heather and Chase -- the forced time off came as a welcome reprieve. Several months of particularly busy times at work had left us no time for a serious conversation we knew we wanted to have. So on the first day of the shutdown, we escaped the city for the hills of West Virginia to talk about life, love, and our future. Two days later, after a long walk, we proposed to each other on the banks of the Potomac River. We were married in Albuquerque, New Mexico on March 15, 2014.</p>
-  	<p>The alignment of the federal fiscal year with the timeline of our relationship inspired this report. Chase's love of data brought it into being. And our lives provided the content. Using a variety of data sets, The Kimball Campbell FY 2014 Report documents our relationship from 10-01-2013 to 09-30-2014. In short: we travel extensively, enjoy dinner with friends, and communicate often.</p>
 
-	<div id="donutchart" class="chart" style="width: 500px; height: 300px;"></div>
-	<p>Next year's version of this pie chart will be much more boring...</p>
-	<center>
-	<p style="font-family:arial; font-size:13"><b>Air Travel During FY 2014</b>
-	<br>
-	<i>(click a flight path to learn more)</i>
-	</p>
-	</center>
-	<div id="map-canvas" class="chart" style="width: 600px; height: 300px;"></div>
-	<p>We travelled extensively in FY14. Our wedding in Albuquerque was the biggest highlight, but other memorable trips included a family vacation to Iceland, friends' weddings in Seattle and Boulder, and a whirlwind trip to Puerto Rico! After so much travel, we continue to be each other's favorite travel companions.</p>
-	<div id="phone_chart_div" class="chart" style="width: 900px; height: 500px;"></div>
-	<p>Phone calls between us were longer and more frequent before in the evenings and in the days leading right up to our wedding. Once we were married there was less need to talk over the phone -- except for the trips Heather took to Miami in June.</p>
-	<div id="email_chart_div" class="chart" style="width: 900px; height: 500px;"></div>
-	<p>Our pattern of emailing each other changed dramatically once we were married. Not shown here is the increase in post-it note usage after March 14.</p>
-	<div id="text_chart_div" class="chart" style="width: 900px; height: 500px;"></div>
-	<p>We continued to text each other frequently after our marriage, though there was less need to text early in the morning or late at night.</p>
+
+<!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <div class="title">
+	  <h1>Kimball Campbell Report</h1>
+	  <h2>Fiscal Year 2014</h2>
+  </div>
+
+  <div class="section intro">
+    <div class="container">
+      <div class="row">
+        <div class="one-half column">
+		  	<p>On October 1, 2013, the U.S. Government shut down. Congress's failure to pass a spending bill before the start of the new fiscal year triggered the suspension of services and the furlough of federal workers, causing turbulance in the markets and international embarassment. However, for the two of us -- a pair of young government workers named Heather and Chase -- the forced time off came as a welcome reprieve. Several months of particularly busy times at work had left us no time for a serious conversation we knew we wanted to have. So on the first day of the shutdown, we escaped the city for the hills of West Virginia to talk about life, love, and our future. Two days later, after a long walk, we proposed to each other on the banks of the Potomac River. We were married in Albuquerque, New Mexico on March 15, 2014.</p>
+		  	<p>The alignment of the federal fiscal year with the timeline of our relationship inspired this report. Chase's love of data brought it into being. And our lives provided the content. Using a variety of data sets, The Kimball Campbell FY 2014 Report documents our relationship from 10-01-2013 to 09-30-2014. In short: we travel extensively, enjoy dinner with friends, and communicate often.</p>
+        </div>
+        <div class="one-half column">
+			<div id="donutchart" class="chart" style="width: 100%; height: 275px;"></div>
+			<p class="caption">Next year's version of this pie chart should be much more boring...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section phone">
+    <div class="container">
+      <div class="row">
+      	<h4>Phone Calls</h4>
+      </div>
+      <div class="row">
+        <div class="two-thirds column">
+			<div id="phone_chart_div" class="chart" style="height: 300px;"></div>
+        </div>
+        <div class="one-third column notes">
+			<p>Phone calls between us were longer and more frequent before in the evenings and in the days leading right up to our wedding. Once we were married there was less need to talk over the phone -- except for the trips Heather took to Miami in June.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section email">
+    <div class="container">
+      <div class="row">
+      	<h4>Emails</h4>
+      </div>
+      <div class="row">
+        <div class="two-thirds column">
+			<div id="email_chart_div" class="chart" style="height: 300px;"></div>
+        </div>
+        <div class="one-third column notes">
+			<p>Our pattern of emailing each other changed dramatically once we were married. Not shown here is the increase in post-it note usage after March 14.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section text">
+    <div class="container">
+      <div class="row">
+      	<h4>Texts</h4>
+      </div>
+      <div class="row">
+        <div class="two-thirds column">
+			<div id="text_chart_div" class="chart" style="height: 300px;"></div>
+        </div>
+        <div class="one-third column notes">
+			<p>We continued to text each other frequently after our marriage, though there was less need to text early in the morning or late at night.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section flight">
+    <div class="container">
+      <div class="row">
+      	<h4>Air Travel</h4>
+      </div>    
+      <div class="row">
+		<div id="map-canvas" class="chart" style="height: 300px;"></div>
+		<br/>
+		<p>We travelled extensively in FY14. Memorable trips included a family vacation to Iceland, friends' weddings in Seattle and Boulder, a whirlwind trip to Puerto Rico, and of course our wedding in Albuquerque! We continue to be each other's favorite travel companions.</p>	
+      </div>
+    </div>
+  </div>
+
+  <div class="section colophon" style="height: 400px;">
+    <div class="container">
+      <div class="row">
+       <div class="offset-by-two eight columns">
+      	<h6>Colophon</h6>
+      	<p style="font-size: smaller;">I grabbed the phone call and SMS data directly from my phone using <a href="https://macroplant.com/iexplorer">iExplorer</a>. I scraped my email metadata using Python (<a href="http://flowingdata.com/2014/05/07/downloading-your-email-metadata/">h/t Nathan Yao</a>). For the visualizations I used the <a href="https://developers.google.com/chart/interactive/docs/gallery/bubblechart">Google Charts API</a> and <a href="https://developers.google.com/maps/documentation/javascript/">Google Maps API</a>. To make the site look good I used the <a href="http://getskeleton.com/">Skeleton CSS framework</a>, and for hosting I used <a href="https://pages.github.com/">Github Pages</a>. You can help make the report even better by <a href="https://github.com/chasekimball/fy14-report/">submitting a pull request</a>.</p>
+      	</div>
+      </div>
+    </div>
+  </div>
+
+
   </body>
 </html>
