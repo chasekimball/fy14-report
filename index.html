@@ -15,7 +15,7 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -48,36 +48,13 @@
 	  margin-right: 4em;
 	  padding: 0.5em;
 	}
-	.colophon {
-	    align-items: bottom;
-	    vertical-align: bottom;		
+	.container-vertical-center {
+		display: flex;
+		align-items: center;
 	}
-	.notes {
-/*		display: flex;
-	    align-items: center;*/
-	}
+
 	</style>
 
-
-<!-- 	<style>
-	  html, body, #map-canvas {
-		height: 200px;
-		margin: 0px;
-		padding: 0px
-	  }
-	</style> -->
-
-<!-- 	<style type="text/css">
-		body {
-		    padding-top: 50px;
-		    padding-right: 80px;
-		    padding-bottom: 50px;
-		    padding-left: 80px;
-		}
-		.chart {
-			margin: auto;
-		}
-	</style> -->
 
 	<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAR0WG6ZXeEhGQ9CIMc3VLikCp1sXN0EGk'></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -2231,8 +2208,8 @@
 
 		polyline = new google.maps.Polyline({
 			path: path,
-			strokeColor: "#0000FF",
-			strokeOpacity: 0.5,
+			strokeColor: "#dc3912", //#0000FF
+			strokeOpacity: 0.6,
 			strokeWeight: 8
 		});
 
@@ -2242,6 +2219,9 @@
 			this.setOptions({
 				strokeOpacity: 1
 			});
+				infowindow.setContent(title);
+				infowindow.setPosition(event.latLng);
+				infowindow.open(map, this);				
 		});
 		google.maps.event.addListener(polyline, 'click', function (event) {
 				infowindow.setContent(title);
@@ -2251,7 +2231,7 @@
 
 		google.maps.event.addListener(polyline, 'mouseout', function (event) {
 			this.setOptions({
-				strokeOpacity: 0.5
+				strokeOpacity: 0.6
 			});
 			//infowindow.close();
 		});
@@ -2282,11 +2262,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div class="row">
         <div class="one-half column">
 		  	<p>On October 1, 2013, the U.S. Government shut down. Congress's failure to pass a spending bill before the start of the new fiscal year triggered the suspension of services and the furlough of federal workers, causing turbulance in the markets and international embarassment. However, for the two of us -- a pair of young government workers named Heather and Chase -- the forced time off came as a welcome reprieve. Several months of particularly busy times at work had left us no time for a serious conversation we knew we wanted to have. So on the first day of the shutdown, we escaped the city for the hills of West Virginia to talk about life, love, and our future. Two days later, after a long walk, we proposed to each other on the banks of the Potomac River. We were married in Albuquerque, New Mexico on March 15, 2014.</p>
-		  	<p>The alignment of the federal fiscal year with the timeline of our relationship inspired this report. Chase's love of data brought it into being. And our lives provided the content. Using a variety of data sets, The Kimball Campbell FY 2014 Report documents our relationship from 10-01-2013 to 09-30-2014. In short: we travel extensively, enjoy dinner with friends, and communicate often.</p>
+		  	<p>The alignment of the federal fiscal year with the timeline of our relationship inspired this report. Chase's love of data brought it into being. And our lives provided the content. Using a variety of data sets, The Kimball Campbell FY 2014 Report documents our relationship from 10/1/2013 to 9/30/2014. In short: we travel extensively, enjoy dinner with friends, and communicate often.</p>
         </div>
         <div class="one-half column">
 			<div id="donutchart" class="chart" style="width: 100%; height: 275px;"></div>
-			<p class="caption">Next year's version of this pie chart should be much more boring...</p>
+			<p class="caption">Next year's version of this pie chart should be much more boring.</p>
         </div>
       </div>
     </div>
@@ -2298,12 +2278,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div class="row">
       	<h4>Phone Calls</h4>
       </div>
-      <div class="row">
+      <div class="row container-vertical-center">
         <div class="two-thirds column">
 			<div id="phone_chart_div" class="chart" style="height: 300px;"></div>
         </div>
         <div class="one-third column notes">
 			<p>Phone calls between us were longer and more frequent before in the evenings and in the days leading right up to our wedding. Once we were married there was less need to talk over the phone -- except for the trips Heather took to Miami in June.</p>
+			</div>
         </div>
       </div>
     </div>
@@ -2314,7 +2295,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div class="row">
       	<h4>Emails</h4>
       </div>
-      <div class="row">
+      <div class="row container-vertical-center">
         <div class="two-thirds column">
 			<div id="email_chart_div" class="chart" style="height: 300px;"></div>
         </div>
@@ -2330,7 +2311,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div class="row">
       	<h4>Texts</h4>
       </div>
-      <div class="row">
+      <div class="row container-vertical-center">
         <div class="two-thirds column">
 			<div id="text_chart_div" class="chart" style="height: 300px;"></div>
         </div>
@@ -2354,12 +2335,15 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </div>
   </div>
 
-  <div class="section colophon" style="height: 400px;">
+  <div class="section colophon">
     <div class="container">
+      <div class="row" style="height: 150px;">
+      </div>
       <div class="row">
        <div class="offset-by-two eight columns">
       	<h6>Colophon</h6>
-      	<p style="font-size: smaller;">I grabbed the phone call and SMS data directly from my phone using <a href="https://macroplant.com/iexplorer">iExplorer</a>. I scraped my email metadata using Python (<a href="http://flowingdata.com/2014/05/07/downloading-your-email-metadata/">h/t Nathan Yao</a>). For the visualizations I used the <a href="https://developers.google.com/chart/interactive/docs/gallery/bubblechart">Google Charts API</a> and <a href="https://developers.google.com/maps/documentation/javascript/">Google Maps API</a>. To make the site look good I used the <a href="http://getskeleton.com/">Skeleton CSS framework</a>, and for hosting I used <a href="https://pages.github.com/">Github Pages</a>. You can help make the report even better by <a href="https://github.com/chasekimball/fy14-report/">submitting a pull request</a>.</p>
+      	<p style="font-size: smaller;">I grabbed the phone call and SMS data directly from my phone using <a href="https://macroplant.com/iexplorer">iExplorer</a>. I scraped my email metadata using Python (<a href="http://flowingdata.com/2014/05/07/downloading-your-email-metadata/">h/t Nathan Yao</a>). For the visualizations I used the <a href="https://developers.google.com/chart/interactive/docs/gallery/bubblechart">Google Charts API</a> and <a href="https://developers.google.com/maps/documentation/javascript/">Google Maps API</a>. To make the site look good I used the <a href="http://getskeleton.com/">Skeleton CSS framework</a>, and for hosting I used <a href="https://pages.github.com/">Github Pages</a>. The paper plane is by Creative Stall, from the <a href="https://thenounproject.com/term/paper-plane/981479/">Noun Project</a>. You can help make the report even better by <a href="https://github.com/chasekimball/fy14-report/">submitting a pull request</a>.</p>
+      	<img src="images/paper-plane.png" style="width: 20px; display: block; margin: auto;">
       	</div>
       </div>
     </div>
