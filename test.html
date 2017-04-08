@@ -12,9 +12,11 @@
 	*/
 var myData = [];
 var flare = 'id,\na,\nb,\n';
-var data = d3.csvParse("data/email.csv", function(d){
+var data = d3.csvParse(flare, function(d){
 	console.log(d[0]);
 });
+
+var newData = d3.csvParse(flare);
 
 
 
