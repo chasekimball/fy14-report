@@ -10,9 +10,11 @@
 		console.log(data[0]);
 	});
 	*/
-	  
+var myData = [];
 var flare = 'id,\na,\nb,\n';
-var data = d3.csvParse("data/email.csv");
+var data = d3.csvParse("data/email.csv", function(d){
+	console.log(d[0]);
+});
 
 
 
