@@ -5,11 +5,9 @@
   <script src="scripts/d3.v4.min.js"></script>
   <script type="text/javascript">
 
-
-var myData = d3.csv('data/email.csv');
-	  
-d3.csvParse(myData, function(d){
-	console.log(d[0]);
+d3.csv("/data/email.csv", function(error, data) {
+  if (error) throw error;
+  console.log(data); // [{"Hello": "world"}, …]
 });
 
 
